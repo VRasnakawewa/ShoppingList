@@ -21,7 +21,8 @@ app.on('ready', function () {
     mainWindow.on('closed', function () {
         app.quit();
     });
-    //build menu from temlate
+
+    //build menu from template
     const mainMenu = Menu.buildFromTemplate(mainMenuTemplate);
     //insert menu
     Menu.setApplicationMenu(mainMenu);
@@ -41,6 +42,10 @@ function createAddWindow() {
         protocol: 'file:',
         slashes: true
     }));
+    //garbage collection handle
+    addWindow.on('close', function () {
+        addWindow = null;
+    });
 }
 
 // create menu Template
